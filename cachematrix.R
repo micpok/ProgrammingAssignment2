@@ -39,9 +39,12 @@ cacheSolve <- function(x, ...) {
             message("getting cached data")
             return(s)
         } else {
-          ni <- solve(x$get())
-          x$setinverse(ni)
+          ## compute inverse
+          i <- solve(x$get())
+          ## save inverse to cache
+          x$setinverse(i)
           message("inverse calculated")
-          return(ni)
+          ## display inverse
+          return(i)
         }
 }
