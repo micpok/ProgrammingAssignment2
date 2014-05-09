@@ -34,15 +34,21 @@ cacheSolve <- function(x, ...) {
         if(!is.null(s)) {
           message("getting cached data")
           return(s)
+        } else  {
+          ni <- solve(x$get())
+          x$setinverse(ni)
+          message("inverse calculated")
+          return(ni)
         }
-        
+                
         ## calculate current inverse of matrix x
         check <- solve(x)
-        
+        t
         if(s != check) {
           ## Calculated inverse is different from cached inverse
           ## This means the matrix was changed
           ## Therefore return the new inverse
+          message("something's changed - calculating new inverse")
           return(check)
         } else {
           ## nothing was changed => return the cached inverse
